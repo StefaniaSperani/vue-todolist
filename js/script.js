@@ -47,7 +47,11 @@ const app = createApp({
     },
     methods: {
         addTask(){
-            this.todoList.unshift(this.newTask);
+            task = {
+                text: this.newTask,
+                done: false,
+            };
+            this.todoList.unshift(this.task);
             console.log( this.todoList);
 
         }
