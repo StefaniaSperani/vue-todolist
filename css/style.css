@@ -5,3 +5,11 @@ body{
 li{
     list-style: none;
 }
+.fa-circle-xmark{
+    cursor: pointer;
+    color: rgb(184, 51, 51);
+}
+.changeClick{
+    color: rgb(12, 88, 12);
+    text-decoration: line-through;
+}
