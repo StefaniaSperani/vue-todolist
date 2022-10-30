@@ -14,7 +14,7 @@ il testo digitato viene letto e utilizzato per creare un nuovo todo,
 che quindi viene aggiunto alla lista dei todo esistenti.
 Bonus:
 x 1- oltre al click sul pulsante, intercettare anche il tasto ENTER per aggiungere il todo alla lista
-2- cliccando sul testo dell'item, invertire il valore della proprietà done del todo corrispondente 
+x 2- cliccando sul testo dell'item, invertire il valore della proprietà done del todo corrispondente 
     (se done era uguale a false, impostare true e viceversa)
 
 */
@@ -56,16 +56,17 @@ const app = createApp({
     methods: {
         //creo la funzione per aggiungere il nuovo task
         addTask(){
-            //e creo la variabile task che inzializzo come oggetto
-            let task = {
-                //dove la proprietà text sarà la newTask inserità nell'input
-                text: this.newTask,
-                //e il done sarà sempre settato false, perchè ancora da fare
-                done: false,
-            };
+            if(this.newTask.length >= 5){
+                console.log(this.newTask.length);
                 //poi nella to do list aggiungo con unshift(verrà visualizzato
                 //in alto a tutto) la task che inserirà l'utente
-                this.todoList.unshift(task);
+                this.todoList.unshift({text: this.newTask, done: false});
+                //hasError rimane false
+                this.hasError = false;
+            }else{
+                //altrimenti  hasError switcha a true e visualizza il div d'errore
+                this.hasError = true;
+            }
             //e poi svuoto il campo di input
             this.newTask= '';
         },
@@ -75,6 +76,11 @@ const app = createApp({
         removeTask(ind){
             //dalla todoList cancella quell'indice, per uno solo
             this.todoList.splice(ind, 1);
+        },
+        //alla riga 38 del DOM aggiungo la funzione changeClick, che al cambio mdel valore
+        //imposta la classe del CSS
+        changeClick(todo){
+            todo.done = !todo.done;
         }
     }
 //monto tutto sul div #app

@@ -35,7 +35,7 @@
                     <!-- qua vado a ciclare la todolist così mostrerà il mio array di cose da fare -->
                     <li v-for="(todo, index) in todoList" :key="index" class="d-flex flex-column py-2">
                         <!-- Se il done è settato a true, aggiungerà questa classe che ho impostato sul CSS -->
-                        <span :class="{changeClick: todo.done }" >{{todo.text}}</span>
+                        <span :class="{'changeClick': todo.done }" @click="changeClick(todo)" >{{todo.text}}</span>
                         <!-- Al click(aggiungo .stop così non propaga il suo evento all'esterno)
                         aggiungo la funzione di rimozione del task(sempre col suo index come impostato su js)-->
                         <i @click.stop="removeTask(index)" class="fa-regular fa-circle-xmark"></i>
